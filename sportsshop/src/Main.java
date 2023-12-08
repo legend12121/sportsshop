@@ -48,10 +48,7 @@ public class Main {
         System.out.println("enter a thing name");
         String name=input.nextLine();
         Things foundThing = ashop.find(name);
-        if(foundThing!=null){
-            System.out.println("name:" + foundThing.getName() + " price:" +foundThing.getPrice() + " number:" + foundThing.getNumber() + "\n");
-        }
-        else{
+        if(foundThing==null){
             System.out.println("There are no things with the name [" + name + "] in the store.");
         }
     }

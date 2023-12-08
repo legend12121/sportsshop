@@ -38,7 +38,7 @@ public class Goods {
         return listofproduct;
     }
 public Things find(String name){
-        Things foundthing=null;
+        Things foundThing=null;
         if(isEmpty()){
             return null;
         }
@@ -47,12 +47,12 @@ public Things find(String name){
                 boolean result;
                 result= things[i].getName().contains(name);
                 if(result) {
-                        foundthing =  things[i];
-                        System.out.println(things[i]);
+                        foundThing =  things[i];
+                    System.out.print("name:" + foundThing.getName() + " price:" +foundThing.getPrice() + " number:" + foundThing.getNumber() + "\n");
                 }
                 }
             }
-            return foundthing;
+            return foundThing;
         }
     public  void buyThings(String name,int num){
         for(int i = 0; i< things.length; i++){
