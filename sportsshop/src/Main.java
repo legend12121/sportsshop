@@ -1,75 +1,74 @@
 import java.util.Scanner;
-
 public class Main {
-    private Scanner input=new Scanner(System.in);
-    private shop ashop;
+    public Scanner input=new Scanner(System.in);
+    public Goods ashop=new Goods();
     public static void main(String[] args) {
         System.out.println("test");
         Main driver=new Main();
         driver.setup();
-        driver.runmenu();
-
-        }
-        private int mainmenu(){
+        driver.runMenu();
+    }
+    public int mainMenu(){
         System.out.println("""
+                \u001b[4;33;255m
                 Shop Menu
-                
-                1)add a thing
-                2)list the things
-                3)find the thing
-                0)exit
-                ==>>""");
+                (1)add a thing
+                (2)list the things
+                (3)find the thing
+                (4)buy a thing
+                (5)delete a thing
+                (6)change a thing
+                (0)exit
+                ==>>\u001b[0;30;255m""");
         int option=input.nextInt();
         return option;
-
-        }
-        private void runmenu(){
-        int option=mainmenu();
+    }
+    private void runMenu(){
+        int option=mainMenu();
         while (option!=0){
             switch (option){
-                case 1->addathing();
-                case 2->listallthings();
-                case 3->findathing();
+                case 1-> addAthing();
+                case 2-> listAllthings();
+                case 3-> fingAthing();
+                case 4-> buyThings();
+                case 5->deleteAthing();
+                case 6->changeAthing();
                 default -> System.out.println("Invalid option entered"+option);
             }
             System.out.println("\nPress enter key to continue");
             input.nextLine();
             input.nextLine();
-            option=mainmenu();
-
-
+            option=mainMenu();
         }
         System.out.println("exiting,bye!");
         System.exit(0);
-        }
-private void findathing(){
+    }
+    private void fingAthing(){
         input.nextLine();
         System.out.println("enter a thing name");
         String name=input.nextLine();
         Things foundThing = ashop.find(name);
         if(foundThing!=null){
-            System.out.println("the foundthing is "+foundThing);
-
-
+            System.out.println("name:" + foundThing.getName() + " price:" +foundThing.getPrice() + " number:" + foundThing.getNumber() + "\n");
         }
         else{
-            System.out.println("There are no Things with the name [" + name + "] in the store.");
+            System.out.println("There are no things with the name [" + name + "] in the store.");
         }
-
-}
-private void setup(){
+    }
+    public void setup(){
         System.out.println("How many things do you want to store?");
         int num=input.nextInt() ;
-        ashop=new shop(num);
-
+        ashop.shop(num);
     }
-    private void addathing(){
+    public void addAthing(){
         input.nextLine();
         System.out.println("enter the thing name");
-        String thingname=input.nextLine();
+        String thingName=input.nextLine();
         System.out.println("enter the price");
-        float thingprice=input.nextFloat();
-        Things temp=new Things(thingname,thingprice);
+        double thingPrice=input.nextFloat();
+        System.out.println("enter the number");
+        int thingNumber=input.nextInt();
+        Things temp=new Things(thingName,thingPrice,thingNumber);
         boolean isadded=ashop.add(temp);
         if(isadded){
             System.out.println("Thing Added Successfully");
@@ -77,9 +76,36 @@ private void setup(){
         else {
             System.out.println("No Thing Added");
         }
-}
-public void listallthings(){
+    }
+    public void listAllthings(){
         System.out.println("products are");
         System.out.println(ashop.list());
-}
     }
+    public void buyThings(){
+        input.nextLine();
+        System.out.println("enter the name you want to buy");
+        String name=input.nextLine();
+        System.out.println("enter how many the goods you want to buy");
+        int num=input.nextInt();
+        ashop.buyThings(name,num);
+    }
+    public void deleteAthing(){
+        System.out.println("enter the name you want to delete");
+        String name=input.next();
+        ashop.deleteAthing(name);
+    }
+    public void changeAthing(){
+        System.out.println("enter the name of the goods you want to change");
+        String name=input.next();
+        if(ashop.changeThing(name)){
+            System.out.println("enter the new number");
+            int num=input.nextInt();
+            System.out.println("enter the new price");
+            double price=input.nextDouble();
+            ashop.changeAthing(name,price,num);
+        }
+        else {
+            System.out.println("what you want to buy doesn't exist");
+        }
+    }
+}
