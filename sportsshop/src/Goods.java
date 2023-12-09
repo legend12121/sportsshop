@@ -12,6 +12,10 @@ public class Goods {
    }
    public boolean add(Things things1){
      if(isFull()){
+         if(things[count-1]==null) {
+             things[count-1]=things1;
+             return true;
+         }
          return false;
      }
      else {
@@ -63,30 +67,28 @@ public Things find(String name){
                 System.out.println("you succeed in buying what you want");
                 break;
             }
-            else {
-                System.out.println("no goods match!");
-              break;
-            }
             }
     }
+        if(!changeThing(name)){
+            System.out.println("no goods match!");
+        }
        }
        public void deleteAthing(String name){
            for (int i = 0; i < things.length; i++) {
-               if(things[i]!=null){
-                   if(things[i].getName().equals(name)){
-                       things[i]=null;
-                       if(i< things.length){
-                           for (int j = i+1; j < things.length; j++) {
-                               things[j-1]= things[j];
+               if(things[i]!=null) {
+                   if (things[i].getName().equals(name)) {
+                       things[i] = null;
+                       if (i < things.length - 1) {
+                           for (int j = i + 1; j < things.length; j++) {
+                               things[j - 1] = things[j];
                            }
-                           things[things.length-1]=null;
                        }
+                       things[things.length - 1] = null;
                        System.out.println("Successfully delete!");
                        break;
                    }
-                   else {
-                       System.out.println("no goods match!");
-                       break;
+                   if(!changeThing(name)){
+                       System.out.println("nothing is deleted!");
                    }
                }
            }

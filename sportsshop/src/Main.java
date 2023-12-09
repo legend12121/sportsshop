@@ -7,7 +7,7 @@ public class Main {
         Main driver=new Main();
         driver.setup();
         driver.runMenu();
-    }
+    }//Build a new main named driver.
     public int mainMenu(){
         System.out.println("""
                 \u001b[4;33;255m
@@ -22,7 +22,7 @@ public class Main {
                 ==>>\u001b[0;30;255m""");
         int option=input.nextInt();
         return option;
-    }
+    }//Provide operational guidance and input commands through the keyboard to run.
     private void runMenu(){
         int option=mainMenu();
         while (option!=0){
@@ -42,7 +42,7 @@ public class Main {
         }
         System.out.println("exiting,bye!");
         System.exit(0);
-    }
+    }//Referencing the corresponding method through the value of the input option in mainMenu.
     private void fingAthing(){
         input.nextLine();
         System.out.println("enter a thing name");
@@ -51,19 +51,19 @@ public class Main {
         if(foundThing==null){
             System.out.println("There are no things with the name [" + name + "] in the store.");
         }
-    }
+    }//The methods for finding products can be divided into two situations: responding with or without products.You can also search for products through fuzzy search.
     public void setup(){
         System.out.println("How many things do you want to store?");
         int num=input.nextInt() ;
         ashop.shop(num);
-    }
+    }//Opening guidance
     public void addAthing(){
         input.nextLine();
         System.out.println("enter the thing name");
         String thingName=input.nextLine();
         System.out.println("enter the price");
         double thingPrice=input.nextFloat();
-        System.out.println("enter the number");
+        System.out.println("enter the amount");
         int thingNumber=input.nextInt();
         Things temp=new Things(thingName,thingPrice,thingNumber);
         boolean isadded=ashop.add(temp);
@@ -73,11 +73,11 @@ public class Main {
         else {
             System.out.println("No Thing Added");
         }
-    }
+    }//The method of adding products and integrating the name, price, and number of the products.
     public void listAllthings(){
         System.out.println("products are");
         System.out.println(ashop.list());
-    }
+    }//Display the products entered in addAthing.
     public void buyThings(){
         input.nextLine();
         System.out.println("enter the name you want to buy");
@@ -85,17 +85,18 @@ public class Main {
         System.out.println("enter how many the goods you want to buy");
         int num=input.nextInt();
         ashop.buyThings(name,num);
-    }
+    }//Purchase the products added in addNothing by entering the name and quantity of the desired product.
+
     public void deleteAthing(){
         System.out.println("enter the name you want to delete");
         String name=input.next();
         ashop.deleteAthing(name);
-    }
+    }//Delete items added in addAthing by entering the name of the product you want to delete.
     public void changeAthing(){
         System.out.println("enter the name of the goods you want to change");
         String name=input.next();
         if(ashop.changeThing(name)){
-            System.out.println("enter the new number");
+            System.out.println("enter the new amount");
             int num=input.nextInt();
             System.out.println("enter the new price");
             double price=input.nextDouble();
@@ -104,5 +105,5 @@ public class Main {
         else {
             System.out.println("what you want to buy doesn't exist");
         }
-    }
+    }//Enter the name of the product you want to change, and then define its new number and price.
 }
