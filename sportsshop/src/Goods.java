@@ -26,7 +26,7 @@ public class Goods {
          }
          return true;
      }
-    }
+    }//2~29:Use the defined isFull and isEmpty methods to determine and store the added items in the newly created array things.
     public String list(){
         String listofproduct="";
         if(isEmpty()){
@@ -40,7 +40,7 @@ public class Goods {
             }
         }
         return listofproduct;
-    }
+    }//30~43:Use the isFull and isEmpty methods to make judgments, and integrate the data and other information in the array things to assign new values to the listof product.
 public Things find(String name){
         Things foundThing=null;
         if(isEmpty()){
@@ -57,7 +57,7 @@ public Things find(String name){
                 }
             }
             return foundThing;
-        }
+        }//44~60:Using the isEmpty and isFull methods to provide integrated output results for findAthing.
     public  void buyThings(String name,int num){
         for(int i = 0; i< things.length; i++){
             if(things[i]!=null){
@@ -72,7 +72,7 @@ public Things find(String name){
         if(!changeThing(name)){
             System.out.println("no goods match!");
         }
-       }
+       }//61~75:When there is a product in the i+1st space of the array things, provide a purchase service.
        public void deleteAthing(String name){
            for (int i = 0; i < things.length; i++) {
                if(things[i]!=null) {
@@ -89,10 +89,11 @@ public Things find(String name){
                    }
                    if(!changeThing(name)){
                        System.out.println("nothing is deleted!");
+                       break;
                    }
                }
            }
-       }
+       }//76~95:When there is a product in the i+1st space of the array things, provide the service of deleting the product.
        public void changeAthing(String name,double price,int number){
            for (int i = 0; i < things.length; i++) {
                if(things[i]!=null){
@@ -103,8 +104,8 @@ public Things find(String name){
                    }
                }
            }
-       }
-       public boolean changeThing(String name){
+       }//96~106:Provide a service to change the product number and price when there is a product in the i+1st space of the array things.
+    public boolean changeThing(String name){
            for (int i = 0; i < things.length; i++) {
                if(things[i]!=null){
                    if(things[i].getName().equals(name)){
@@ -113,6 +114,6 @@ public Things find(String name){
                }
            }
            return false;
-       }
-    }
+       }//107~116:Provide a service to change the product name when there is a product in the i+1st space of the array things.
+}
 

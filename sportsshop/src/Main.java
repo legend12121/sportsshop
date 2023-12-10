@@ -103,7 +103,7 @@ public class Main {
             ashop.changeAthing(name,price,num);
         }
         else {
-            System.out.println("what you want to buy doesn't exist");
+            System.out.println("what you want to change doesn't exist");
         }
     }//Enter the name of the product you want to change, and then define its new number and price.
 }
